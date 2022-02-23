@@ -3,6 +3,6 @@
   --font-1: "Staatliches", serif;
 }
 
-header{
+header, .contact-list-header h3{
   font-family: var(--font-1);
 }
