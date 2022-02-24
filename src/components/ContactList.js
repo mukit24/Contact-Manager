@@ -1,7 +1,7 @@
 import Contact from "./Contact"
 import { Link } from 'react-router-dom'
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, onDelete }) => {
     return (
         <div>
             <div className="alert alert-success contact-list-header">
@@ -14,7 +14,7 @@ const ContactList = ({ contacts }) => {
             <div className="card my-3">
                 <ul className="list-group list-group-flush">
                     {contacts.map((contact) => (
-                        <Contact key={contact.id} contact_data={contact} />
+                        <Contact key={contact.id} contact_data={contact} onDelete={onDelete} />
                     ))}
                 </ul>
             </div> : 

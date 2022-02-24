@@ -1,19 +1,19 @@
 {
-    "contacts":[
-        {
-            "id": 1,
-            "name":"Mukit Hasan Pranto",
-            "email":"pranto@gmail.com"
-        },
-        {
-            "id": 2,
-            "name":"Muntaser Hafiz",
-            "email":"sajid@gmail.com"
-        },
-        {
-            "id": 3,
-            "name":"Vashkar Kar",
-            "email":"vash@gmail.com"
-        }
-    ]
+  "contacts": [
+    {
+      "id": 1,
+      "name": "Mukit Hasan Pranto",
+      "email": "pranto@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Muntaser Hafiz",
+      "email": "sajid@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "Vashkar Kar",
+      "email": "vash@gmail.com"
+    }
+  ]
 }

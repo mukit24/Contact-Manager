@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
+import EditContact from './components/EditContact';
 
 function App() {
 
@@ -12,8 +13,11 @@ function App() {
 
   const baseURL = "http://localhost:5000/contacts";
 
+  //Add contact to JSON server
   const addContact = (contact) => {
-    setContacts([...contacts,contact]);
+    axios.post(baseURL,{...contact}).then((res) => {
+      setContacts([...contacts,res.data]);
+    })
   }
 
   //retrive from json server
@@ -23,6 +27,21 @@ function App() {
     });
   },[]);
 
+  //Delete Contact
+  const handleDelete = (id) => {
+    axios.delete(`${baseURL}/${id}`).then(() => {
+      setContacts(contacts.filter((task) => task.id !== id))
+    })
+  }
+
+  //Edit Contact
+  const editContact = (contact) =>{
+    // console.log(contact)
+    axios.put(`${baseURL}/${contact.id}`,{...contact}).then((res) => {
+      setContacts(contacts.map((con) => con.id === contact.id ? res.data : con))
+    })
+  }
+
   return (
     <Router>
       <div className='bg-dark text-light'>
@@ -31,8 +50,9 @@ function App() {
           <div className="col-lg-6">
           <Header /> 
             <Routes>
-              <Route path="/" element={<ContactList contacts={contacts} />}/>
+              <Route path="/" element={<ContactList contacts={contacts} onDelete={handleDelete} />}/>
               <Route path='/add' element={<AddContact onAdd={addContact}/>}/>
+              <Route path='/edit' element={<EditContact onEdit={editContact}/>}/>
             </Routes>
           </div>
         </div>

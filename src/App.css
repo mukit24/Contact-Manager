@@ -6,3 +6,7 @@
 header, .contact-list-header h3{
   font-family: var(--font-1);
 }
+
+.contact-icon i{
+  cursor: pointer;
+}
