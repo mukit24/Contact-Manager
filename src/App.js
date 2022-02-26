@@ -10,6 +10,8 @@ import EditContact from './components/EditContact';
 function App() {
 
   const [contacts,setContacts] = useState([]);
+  const [searchTerm,setSearchTerm] = useState('');
+  const [searchResult,setSearchResult] = useState([]);
 
   const baseURL = "http://localhost:5000/contacts";
 
@@ -42,6 +44,19 @@ function App() {
     })
   }
 
+  //Search Contact
+  const handleSearch = (keyword) => {
+    setSearchTerm(keyword);
+
+    if(keyword !== ''){
+      const newContacts = contacts.filter((contact) => Object.values(contact).join(' ').toLowerCase().includes(keyword.toLowerCase())
+      )
+      setSearchResult(newContacts)
+    }else{
+      setSearchResult(contacts)
+    }
+  }
+
   return (
     <Router>
       <div className='bg-dark text-light'>
@@ -50,7 +65,7 @@ function App() {
           <div className="col-lg-6">
           <Header /> 
             <Routes>
-              <Route path="/" element={<ContactList contacts={contacts} onDelete={handleDelete} />}/>
+              <Route path="/" element={<ContactList contacts={searchTerm.length < 1 ? contacts: searchResult} onDelete={handleDelete} term={searchTerm} onSearch={handleSearch} />}/>
               <Route path='/add' element={<AddContact onAdd={addContact}/>}/>
               <Route path='/edit' element={<EditContact onEdit={editContact}/>}/>
             </Routes>
